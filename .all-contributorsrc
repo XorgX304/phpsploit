@@ -67,7 +67,7 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/156915?v=4",
       "profile": "http://wikisecure.net",
       "contributions": [
-        "blog"
+        {"type": "blog", "url":"http://wikisecure.net/a-walk-through-of-phpsploit-backdoor/"}
       ]
     }
   ],

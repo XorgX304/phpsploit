@@ -60,6 +60,15 @@ if ! which "$txt2tags" >/dev/null; then
     >&2 echo -e "    ${GREEN}sudo apt install ${txt2tags}${NC}"
     exit 1
 fi
+ 
+# check existence of `txt2tags` tool
+# needed to run ./man/update-man.sh
+tool="all-contributors"
+if ! which "$tool" >/dev/null; then
+    >&2 echo -e "\n${RED}[-] Please install '$tool':${NC}"
+    >&2 echo -e "    ${GREEN}sudo npm install -g ${txt2tags}-cli${NC}"
+    exit 1
+fi
 
 
 # make sure that git work tree is clean
@@ -126,6 +135,10 @@ git add ./phpsploit
 github_changelog_generator --future-release ${TAG}
 remark CHANGELOG.md -o
 git add ./CHANGELOG.md
+
+# update contributors list on README
+all-contributors generate
+git add ./README.md
 
 # update man page
 ./man/update-man.sh
